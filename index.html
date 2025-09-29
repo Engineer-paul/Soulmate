@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Love for My Girlfriend 💕</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(to bottom right, #ffb6c1, #ff69b4);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      height: 100vh;
+      overflow: hidden;
+      text-align: center;
+      position: relative;
+    }
+
+    h1 {
+      color: white;
+      font-size: 2.5rem;
+      margin-top: 10px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    /* Heart outline */
+    .heart-outline {
+      width: 240px;
+      height: 240px;
+      position: relative;
+    }
+
+    .heart-outline path {
+      fill: none;
+      stroke: url(#rainbow);
+      stroke-width: 5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 1400;
+      stroke-dashoffset: 1400;
+      animation: drawHeart 6s linear infinite;
+    }
+
+    @keyframes drawHeart {
+      0%   { stroke-dashoffset: 1400; }
+      50%  { stroke-dashoffset: 0; }
+      100% { stroke-dashoffset: -1400; }
+    }
+
+    /* Text inside heart */
+    .heart-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: white;
+      text-shadow: 0 0 10px rgba(255,255,255,0.9), 0 0 20px rgba(255,0,255,0.8);
+      pointer-events: none;
+    }
+
+    /* Slideshow */
+    .image-container {
+      margin: 20px;
+    }
+
+    .image-container img {
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      object-fit: cover;
+      display: none;
+      border: 6px solid transparent;
+      animation: fadeIn 1s;
+      background-image: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
+      background-size: 400% 400%;
+      animation: borderGlow 5s linear infinite;
+    }
+
+    .image-container img.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes borderGlow {
+      0% { border-image: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet) 1; }
+      50% { border-image: linear-gradient(270deg, red, orange, yellow, green, blue, indigo, violet) 1; }
+      100% { border-image: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet) 1; }
+    }
+
+    /* Love text */
+    .love-text {
+      font-size: 2rem; /* bigger */
+      font-style: italic;
+      display: inline-block;
+      color: white; /* now white */
+      text-shadow: 0 0 8px rgba(255,255,255,0.9), 0 0 16px rgba(255,0,255,0.7);
+      opacity: 0;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .falling {
+      animation: fallDown 5s ease forwards; /* slower fall */
+    }
+
+    @keyframes fallDown {
+      0% { top: 1px; opacity: 0; }
+      30% { opacity: 1; }
+      100% { top: 80%; opacity: 1; }
+    }
+
+    /* Button */
+    button {
+      margin-top: 20px;
+      padding: 12px 25px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 25px;
+      background: white;
+      color: #e60073;
+      cursor: pointer;
+      font-weight: bold;
+      box-shadow: 0px 4px 10px rgba(0,0,0,0.3);
+      transition: 0.3s;
+      position: relative;
+      z-index: 10;
+    }
+
+    button:hover {
+      background: #ff4d94;
+      color: white;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Rainbow Heart Outline -->
+  <div class="heart-outline">
+    <svg viewBox="0 0 512 512" width="240" height="240">
+      <defs>
+        <linearGradient id="rainbow" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="red"/>
+          <stop offset="20%" stop-color="orange"/>
+          <stop offset="40%" stop-color="yellow"/>
+          <stop offset="60%" stop-color="green"/>
+          <stop offset="80%" stop-color="blue"/>
+          <stop offset="100%" stop-color="violet"/>
+        </linearGradient>
+      </defs>
+      <path d="M471.7 73.6c-54.5-46.4-136-38.7-186.4 13.5L256 116.3l-29.3-29.2C176.3 34.9 94.8 27.2 40.3 73.6c-62.9 53.6-66.1 149.8-9.9 207.2l193.5 197.8c12.5 12.8 32.8 12.8 45.3 0l193.5-197.8c56.3-57.5 53-153.6-9.9-207.2z"/>
+    </svg>
+    <div class="heart-text">Paul loves you</div>
+  </div>
+
+  <h1>My Endless Love ❤️</h1>
+
+  <!-- Slideshow -->
+  <div class="image-container">
+    <img src="images/joy1.jpg" class="active" alt="My Love">
+    <img src="images/joy2.jpg" alt="My Love">
+    <img src="images/joy3.jpg" alt="My Love">
+  </div>
+
+  <!-- Love Message -->
+  <div class="love-text" id="loveMessage">
+    You are the reason my heart beats 💖
+  </div>
+
+  <!-- Button -->
+  <button onclick="showLove()">💌 <span id="sms">Click this button</span></button>
+
+  <!-- 🎵 Background Music -->
+  <audio id="bgMusic" src="audio/Mylove.mp3" autoplay></audio>
+  <!-- replace music/love-song.mp3 with your music file path -->
+
+  <script>
+    // Slideshow
+    let currentImage = 0;
+    const images = document.querySelectorAll(".image-container img");
+
+    function changeImage() {
+      images[currentImage].classList.remove("active");
+      currentImage = (currentImage + 1) % images.length;
+      images[currentImage].classList.add("active");
+    }
+    setInterval(changeImage, 4000);
+
+    // Love messages
+    const messages = [
+      "You make my world brighter 🌎💖",
+      "Forever is better with you 💕",
+      "My heart beats only for you ❤️",
+      "You are my sunshine ☀️ and my moon 🌙",
+      "Every moment with you is paradise 🏝️",
+      "You are my dream come true 💞",
+      "I will love you endlessly 💘"
+    ];
+
+    function showLove() {
+      let sms = document.getElementById('sms')
+      sms.innerHTML= "click Again"
+      const msgElement = document.getElementById("loveMessage");
+      const randomMsg = messages[Math.floor(Math.random() * messages.length)];
+      msgElement.innerHTML = randomMsg;
+
+      // reset animation
+      msgElement.classList.remove("falling");
+      void msgElement.offsetWidth; 
+      msgElement.classList.add("falling");
+    }
+
+    // 🎵 Play music automatically on page load
+    window.addEventListener("load", () => {
+      const music = document.getElementById("bgMusic");
+      music.play().catch(() => {
+        console.log("Autoplay blocked — music will start after first click.");
+      });
+    });
+  </script>
+</body>
+</html>
